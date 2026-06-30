@@ -26,9 +26,20 @@ function MoonIcon() {
   )
 }
 
+function MenuIcon() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <line x1="3" y1="6" x2="21" y2="6" />
+      <line x1="3" y1="12" x2="21" y2="12" />
+      <line x1="3" y1="18" x2="21" y2="18" />
+    </svg>
+  )
+}
+
 export default function Layout() {
   const location = useLocation()
   const [dark, setDark] = useState(() => document.documentElement.classList.contains('dark'))
+  const [menuAberto, setMenuAberto] = useState(false)
 
   const toggle = () => {
     const next = !dark
@@ -39,18 +50,25 @@ export default function Layout() {
 
   return (
     <div className="min-h-screen bg-canvas">
-      <Sidebar />
-      <main className="ml-60 min-h-screen">
-        <header className="flex justify-end px-8 pt-6">
+      <Sidebar aberta={menuAberto} onFechar={() => setMenuAberto(false)} />
+      <main className="min-h-screen md:ml-60">
+        <header className="flex items-center px-4 pt-6 sm:px-8">
+          <button
+            onClick={() => setMenuAberto(true)}
+            aria-label="Abrir menu"
+            className="rounded-lg border border-line bg-surface p-2 text-ink md:hidden"
+          >
+            <MenuIcon />
+          </button>
           <button
             onClick={toggle}
             aria-label="Alternar tema"
-            className="rounded-lg border border-line bg-surface p-2 text-ink transition hover:bg-canvas"
+            className="ml-auto rounded-lg border border-line bg-surface p-2 text-ink transition hover:bg-canvas"
           >
             {dark ? <SunIcon /> : <MoonIcon />}
           </button>
         </header>
-        <div key={location.pathname} className="animate-page px-8 pb-8 pt-4">
+        <div key={location.pathname} className="animate-page px-4 pb-8 pt-4 sm:px-8">
           <Outlet />
         </div>
       </main>

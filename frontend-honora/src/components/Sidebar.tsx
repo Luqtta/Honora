@@ -49,37 +49,45 @@ const nav = [
   { to: '/clientes', label: 'Clientes', icon: <ClientesIcon /> },
 ]
 
-export default function Sidebar() {
+export default function Sidebar({ aberta, onFechar }: { aberta: boolean; onFechar: () => void }) {
   const { logout } = useAuth()
 
   return (
-    <aside className="fixed left-0 top-0 flex h-screen w-60 flex-col bg-sidebar px-4 py-6 text-gray-300">
-      <div className="px-2 pb-8 text-xl font-bold text-white">Honora</div>
-
-      <nav className="flex flex-1 flex-col gap-1">
-        {nav.map((item) => (
-          <NavLink
-            key={item.to}
-            to={item.to}
-            className={({ isActive }) =>
-              `flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition ${
-                isActive ? 'bg-accent text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white'
-              }`
-            }
-          >
-            {item.icon}
-            {item.label}
-          </NavLink>
-        ))}
-      </nav>
-
-      <button
-        onClick={logout}
-        className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-400 transition hover:bg-white/5 hover:text-white"
+    <>
+      {aberta && <div className="fixed inset-0 z-30 bg-black/40 md:hidden" onClick={onFechar} />}
+      <aside
+        className={`fixed left-0 top-0 z-40 flex h-screen w-60 flex-col bg-sidebar px-4 py-6 text-gray-300 transition-transform md:translate-x-0 ${
+          aberta ? 'translate-x-0' : '-translate-x-full'
+        }`}
       >
-        <LogoutIcon />
-        Sair
-      </button>
-    </aside>
+        <div className="px-2 pb-8 text-xl font-bold text-white">Honora</div>
+
+        <nav className="flex flex-1 flex-col gap-1">
+          {nav.map((item) => (
+            <NavLink
+              key={item.to}
+              to={item.to}
+              onClick={onFechar}
+              className={({ isActive }) =>
+                `flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition ${
+                  isActive ? 'bg-accent text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white'
+                }`
+              }
+            >
+              {item.icon}
+              {item.label}
+            </NavLink>
+          ))}
+        </nav>
+
+        <button
+          onClick={logout}
+          className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-400 transition hover:bg-white/5 hover:text-white"
+        >
+          <LogoutIcon />
+          Sair
+        </button>
+      </aside>
+    </>
   )
 }
