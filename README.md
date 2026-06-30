@@ -45,9 +45,9 @@ git push -u origin main
 2. No serviço criado: **Settings → Root Directory = `honorarios-api`** (ele usa o `Dockerfile`).
 3. **New → Database → PostgreSQL** no mesmo projeto.
 4. No serviço do backend, **Variables**, adicione:
-   - `DATABASE_URL` = `jdbc:postgresql://${{Postgres.PGHOST}}:${{Postgres.PGPORT}}/${{Postgres.PGDATABASE}}`
-   - `DATABASE_USERNAME` = `${{Postgres.PGUSER}}`
-   - `DATABASE_PASSWORD` = `${{Postgres.PGPASSWORD}}`
+   - `DB_URL` = `jdbc:postgresql://${{Postgres.PGHOST}}:${{Postgres.PGPORT}}/${{Postgres.PGDATABASE}}`
+   - `DB_USERNAME` = `${{Postgres.PGUSER}}`
+   - `DB_PASSWORD` = `${{Postgres.PGPASSWORD}}`
    - `JWT_SECRET` = um segredo aleatório (≥ 32 caracteres)
    - `JWT_EXPIRATION` = `86400000`
    - `CORS_ORIGIN` = a URL da Vercel (passo 3) — ex: `https://honora.vercel.app`

@@ -2,9 +2,9 @@ spring:
   application:
     name: honorarios-api
   datasource:
-    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/honora}
-    username: ${DATABASE_USERNAME:honora}
-    password: ${DATABASE_PASSWORD:honora}
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/honora}
+    username: ${DB_USERNAME:honora}
+    password: ${DB_PASSWORD:honora}
     hikari:
       maximum-pool-size: 5
   jpa:
