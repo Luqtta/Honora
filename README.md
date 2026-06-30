@@ -12,14 +12,16 @@ Gestão de clientes e honorários para advocacia previdenciária. Monorepo:
 cd honorarios-api && docker compose up -d
 
 # 2. Backend  (http://localhost:8080)
-mvnw.cmd spring-boot:run          # Windows
-./mvnw spring-boot:run            # Linux/Mac
+#    JWT_SECRET é obrigatório (mínimo 32 caracteres) — a app falha no startup sem ele.
+set JWT_SECRET=dev-secret-local-com-no-minimo-32-caracteres-0123456789   & mvnw.cmd spring-boot:run   # Windows
+JWT_SECRET=dev-secret-local-com-no-minimo-32-caracteres-0123456789 ./mvnw spring-boot:run             # Linux/Mac
 
 # 3. Frontend (http://localhost:5173)
 cd ../frontend-honora && npm install && npm run dev
 ```
 
-O backend já tem defaults apontando pro Postgres do Docker, roda sem configurar nada.
+O `DATABASE_URL` já tem default apontando pro Postgres do Docker. Só o `JWT_SECRET`
+precisa ser setado (não há segredo commitado no repo, de propósito).
 
 ---
 

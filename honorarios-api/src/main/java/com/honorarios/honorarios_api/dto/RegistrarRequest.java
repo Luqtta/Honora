@@ -2,9 +2,10 @@ package com.honorarios.honorarios_api.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 public record RegistrarRequest(
-        @NotBlank String nome,
-        @NotBlank @Email String email,
-        @NotBlank String senha
+        @NotBlank @Size(max = 255) String nome,
+        @NotBlank @Email @Size(max = 255) String email,
+        @NotBlank @Size(min = 6, max = 72) String senha
 ) {}

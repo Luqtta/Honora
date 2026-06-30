@@ -6,11 +6,12 @@ Backend de gestao de clientes e honorarios. Spring Boot 3.5 / Java 21 / PostgreS
 
 ```bash
 docker compose up -d        # sobe o Postgres (porta 5432, volume persistente)
-./mvnw spring-boot:run      # app em http://localhost:8080
+JWT_SECRET=dev-secret-local-com-no-minimo-32-caracteres-0123456789 ./mvnw spring-boot:run
 ```
 
-O `application.yml` ja tem defaults apontando pro Postgres do Docker, entao roda sem
-configurar nada. Pra sobrescrever, exporte as vars de `.env.local.example`.
+`DATABASE_URL` ja tem default apontando pro Postgres do Docker. `JWT_SECRET` e
+obrigatorio (>= 32 caracteres) e nao tem default — a app falha no startup sem ele,
+de proposito (nenhum segredo commitado). Valores de exemplo em `.env.local.example`.
 
 ## Deploy (Railway)
 

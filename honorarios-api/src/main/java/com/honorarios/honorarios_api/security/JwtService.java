@@ -18,7 +18,16 @@ public class JwtService {
 
     public JwtService(@Value("${jwt.secret}") String secret,
                       @Value("${jwt.expiration}") long expiration) {
-        this.key = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
+        if (secret == null || secret.isBlank()) {
+            throw new IllegalStateException(
+                    "JWT_SECRET nao configurado. Defina a variavel de ambiente JWT_SECRET com uma chave aleatoria de no minimo 32 caracteres (256 bits).");
+        }
+        byte[] bytes = secret.getBytes(StandardCharsets.UTF_8);
+        if (bytes.length < 32) {
+            throw new IllegalStateException(
+                    "JWT_SECRET fraco: " + bytes.length + " bytes. Use no minimo 32 bytes (256 bits) para HMAC-SHA256.");
+        }
+        this.key = Keys.hmacShaKeyFor(bytes);
         this.expiration = expiration;
     }
 

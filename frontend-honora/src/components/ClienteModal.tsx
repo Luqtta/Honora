@@ -63,7 +63,10 @@ export default function ClienteModal({ cliente, onClose, onSaved }: Props) {
             <label className="label">Nome</label>
             <input
               className="input"
-              {...register('nome', { required: 'Nome é obrigatório' })}
+              {...register('nome', {
+                required: 'Nome é obrigatório',
+                maxLength: { value: 255, message: 'Máximo de 255 caracteres' },
+              })}
             />
             {errors.nome && <p className="mt-1 text-xs text-red-600">{errors.nome.message}</p>}
           </div>

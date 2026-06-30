@@ -6,12 +6,13 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public record ClienteCreateRequest(
-        @NotBlank String nome,
+        @NotBlank @Size(max = 255) String nome,
         @NotNull @Positive BigDecimal valorAReceber,
         @PositiveOrZero BigDecimal valorRecebido,
         @DecimalMin("0") @DecimalMax("100") BigDecimal percentualHonorarios,
