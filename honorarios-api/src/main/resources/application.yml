@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: honorarios-api
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/honora?user=honora&password=honora}
+    hikari:
+      maximum-pool-size: 5
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+
+server:
+  port: ${PORT:8080}   # Railway injeta PORT; local cai no 8080
+  tomcat:
+    threads:
+      max: 50
+
+jwt:
+  secret: ${JWT_SECRET:dev-secret-change-me-in-production-min-32-bytes-long-0123456789}
+  expiration: ${JWT_EXPIRATION:86400000}
+
+cors:
+  origin: ${CORS_ORIGIN:http://localhost:5173}   # origem(s) do frontend, separadas por virgula

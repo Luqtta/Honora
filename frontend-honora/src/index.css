@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-canvas: 248 249 250;
+    --color-sidebar: 17 24 39;
+    --color-surface: 255 255 255;
+    --color-line: 229 231 235;
+    --color-ink: 17 24 39;
+    --color-muted: 107 114 128;
+  }
+  .dark {
+    --color-canvas: 15 23 42;
+    --color-sidebar: 2 6 23;
+    --color-surface: 30 41 59;
+    --color-line: 51 65 85;
+    --color-ink: 241 245 249;
+    --color-muted: 148 163 184;
+  }
+  body {
+    @apply bg-canvas text-ink font-sans antialiased;
+  }
+}
+
+@layer components {
+  .input {
+    @apply w-full rounded-lg border border-line bg-surface px-3 py-2 text-sm text-ink outline-none transition focus:border-accent focus:ring-1 focus:ring-accent;
+  }
+  .label {
+    @apply mb-1 block text-sm font-medium text-ink;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center rounded-lg border border-line bg-surface px-4 py-2 text-sm font-medium text-ink transition hover:bg-canvas;
+  }
+  .card {
+    @apply rounded-xl border border-line bg-surface;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-page {
+    animation: none;
+  }
+}

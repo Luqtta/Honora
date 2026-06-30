@@ -1,0 +1,16 @@
+# env / segredos
+.env
+.env.local
+
+# backend
+honorarios-api/target/
+
+# frontend
+frontend-honora/node_modules/
+frontend-honora/dist/
+
+# IDE / OS
+.idea/
+.vscode/
+*.iml
+.DS_Store
