@@ -14,6 +14,8 @@ type Form = {
   valorAReceber: number
   valorRecebido: number
   percentualHonorarios: number
+  sucumbencia: number
+  sucumbenciaRecebida: number
   dataPrevisao: string
 }
 
@@ -29,6 +31,8 @@ export default function ClienteModal({ cliente, onClose, onSaved }: Props) {
       valorAReceber: cliente?.valorAReceber,
       valorRecebido: cliente?.valorRecebido ?? undefined,
       percentualHonorarios: cliente?.percentualHonorarios ?? undefined,
+      sucumbencia: cliente?.sucumbencia ?? undefined,
+      sucumbenciaRecebida: cliente?.sucumbenciaRecebida ?? undefined,
       dataPrevisao: cliente?.dataPrevisao ?? '',
     },
   })
@@ -40,6 +44,8 @@ export default function ClienteModal({ cliente, onClose, onSaved }: Props) {
       valorAReceber: data.valorAReceber,
       valorRecebido: isNaN(data.valorRecebido) ? null : data.valorRecebido,
       percentualHonorarios: isNaN(data.percentualHonorarios) ? null : data.percentualHonorarios,
+      sucumbencia: isNaN(data.sucumbencia) ? null : data.sucumbencia,
+      sucumbenciaRecebida: isNaN(data.sucumbenciaRecebida) ? null : data.sucumbenciaRecebida,
       dataPrevisao: data.dataPrevisao || null,
     }
     try {
@@ -118,6 +124,38 @@ export default function ClienteModal({ cliente, onClose, onSaved }: Props) {
             />
             {errors.percentualHonorarios && (
               <p className="mt-1 text-xs text-red-600">{errors.percentualHonorarios.message}</p>
+            )}
+          </div>
+
+          <div>
+            <label className="label">Sucumbência (R$)</label>
+            <input
+              type="number"
+              step="0.01"
+              className="input"
+              {...register('sucumbencia', {
+                valueAsNumber: true,
+                validate: (v) => isNaN(v) || v >= 0 || 'Não pode ser negativo',
+              })}
+            />
+            {errors.sucumbencia && (
+              <p className="mt-1 text-xs text-red-600">{errors.sucumbencia.message}</p>
+            )}
+          </div>
+
+          <div>
+            <label className="label">Sucumbência recebida (R$)</label>
+            <input
+              type="number"
+              step="0.01"
+              className="input"
+              {...register('sucumbenciaRecebida', {
+                valueAsNumber: true,
+                validate: (v) => isNaN(v) || v >= 0 || 'Não pode ser negativo',
+              })}
+            />
+            {errors.sucumbenciaRecebida && (
+              <p className="mt-1 text-xs text-red-600">{errors.sucumbenciaRecebida.message}</p>
             )}
           </div>
 

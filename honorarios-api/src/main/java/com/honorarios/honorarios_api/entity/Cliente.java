@@ -36,6 +36,11 @@ public class Cliente {
 
     private BigDecimal percentualHonorarios;
 
+    // honorarios de sucumbencia (valor absoluto fixado na sentenca/cumprimento) e quanto ja foi pago
+    private BigDecimal sucumbencia;
+
+    private BigDecimal sucumbenciaRecebida;
+
     private LocalDate dataPrevisao;
 
     @CreationTimestamp

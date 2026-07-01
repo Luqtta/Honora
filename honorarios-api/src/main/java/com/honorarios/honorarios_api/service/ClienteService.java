@@ -34,6 +34,8 @@ public class ClienteService {
         c.setValorAReceber(req.valorAReceber());
         c.setValorRecebido(req.valorRecebido());
         c.setPercentualHonorarios(req.percentualHonorarios());
+        c.setSucumbencia(req.sucumbencia());
+        c.setSucumbenciaRecebida(req.sucumbenciaRecebida());
         c.setDataPrevisao(req.dataPrevisao());
         return ClienteResponse.from(clientes.save(c));
     }
@@ -44,6 +46,8 @@ public class ClienteService {
         if (req.valorAReceber() != null) c.setValorAReceber(req.valorAReceber());
         if (req.valorRecebido() != null) c.setValorRecebido(req.valorRecebido());
         if (req.percentualHonorarios() != null) c.setPercentualHonorarios(req.percentualHonorarios());
+        if (req.sucumbencia() != null) c.setSucumbencia(req.sucumbencia());
+        if (req.sucumbenciaRecebida() != null) c.setSucumbenciaRecebida(req.sucumbenciaRecebida());
         if (req.dataPrevisao() != null) c.setDataPrevisao(req.dataPrevisao());
         return ClienteResponse.from(clientes.save(c));
     }

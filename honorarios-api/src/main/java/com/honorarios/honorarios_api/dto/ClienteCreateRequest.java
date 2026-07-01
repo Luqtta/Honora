@@ -17,5 +17,7 @@ public record ClienteCreateRequest(
         @NotNull @Positive @Digits(integer = 13, fraction = 2) BigDecimal valorAReceber,
         @PositiveOrZero @Digits(integer = 13, fraction = 2) BigDecimal valorRecebido,
         @DecimalMin("0") @DecimalMax("100") BigDecimal percentualHonorarios,
+        @PositiveOrZero @Digits(integer = 13, fraction = 2) BigDecimal sucumbencia,
+        @PositiveOrZero @Digits(integer = 13, fraction = 2) BigDecimal sucumbenciaRecebida,
         LocalDate dataPrevisao
 ) {}

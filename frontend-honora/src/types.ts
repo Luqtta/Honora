@@ -6,6 +6,8 @@ export interface Cliente {
   valorAReceber: number
   valorRecebido: number | null
   percentualHonorarios: number | null
+  sucumbencia: number | null
+  sucumbenciaRecebida: number | null
   dataPrevisao: string | null
   status: Status
   createdAt: string

@@ -30,10 +30,15 @@ public class DashboardService {
             BigDecimal pct = nz(c.getPercentualHonorarios());
             BigDecimal pendente = aReceber.subtract(recebido).max(BigDecimal.ZERO);
 
+            // sucumbencia: valor absoluto, somado direto aos honorarios (recebida vs a receber)
+            BigDecimal suc = nz(c.getSucumbencia());
+            BigDecimal sucRecebida = nz(c.getSucumbenciaRecebida());
+
             totalAReceber = totalAReceber.add(aReceber);
             totalRecebido = totalRecebido.add(recebido);
-            honorariosRecebidos = honorariosRecebidos.add(honor(recebido, pct));
-            honorariosAReceber = honorariosAReceber.add(honor(pendente, pct));
+            honorariosRecebidos = honorariosRecebidos.add(honor(recebido, pct)).add(sucRecebida);
+            honorariosAReceber = honorariosAReceber.add(honor(pendente, pct))
+                    .add(suc.subtract(sucRecebida).max(BigDecimal.ZERO));
         }
         return new ResumoResponse(totalAReceber, totalRecebido, honorariosRecebidos, honorariosAReceber);
     }

@@ -14,6 +14,8 @@ public record ClienteResponse(
         BigDecimal valorAReceber,
         BigDecimal valorRecebido,
         BigDecimal percentualHonorarios,
+        BigDecimal sucumbencia,
+        BigDecimal sucumbenciaRecebida,
         LocalDate dataPrevisao,
         Status status,
         Instant createdAt,
@@ -22,7 +24,7 @@ public record ClienteResponse(
     public static ClienteResponse from(Cliente c) {
         return new ClienteResponse(
                 c.getId(), c.getNome(), c.getValorAReceber(), c.getValorRecebido(),
-                c.getPercentualHonorarios(), c.getDataPrevisao(), c.getStatus(),
-                c.getCreatedAt(), c.getUpdatedAt());
+                c.getPercentualHonorarios(), c.getSucumbencia(), c.getSucumbenciaRecebida(),
+                c.getDataPrevisao(), c.getStatus(), c.getCreatedAt(), c.getUpdatedAt());
     }
 }
