@@ -41,7 +41,8 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/**").permitAll()
                         .anyRequest().authenticated())
                 .exceptionHandling(e -> e.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
-                .addFilterBefore(new JwtFilter(jwtService), UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(new JwtFilter(jwtService), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(new AbuseGuardFilter(), JwtFilter.class);   // roda antes de tudo: body size + rate limit
         return http.build();
     }
 

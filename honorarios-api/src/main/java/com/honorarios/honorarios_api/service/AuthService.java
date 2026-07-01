@@ -22,7 +22,8 @@ public class AuthService {
 
     public AuthResponse registrar(RegistrarRequest req) {
         if (usuarios.existsByEmail(req.email())) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Email ja cadastrado");
+            // mensagem generica: nao confirma se o email existe (anti-enumeracao)
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Nao foi possivel concluir o cadastro");
         }
         Usuario u = new Usuario();
         u.setNome(req.nome());
